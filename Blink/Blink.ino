@@ -1,4 +1,4 @@
-int trigPin = 6;
+nt trigPin = 6;
 int echoPin = 7;
 int LEDlampRed = 9;
 int LEDlampYellow = 10;
@@ -24,28 +24,32 @@ void loop() {
   delayMicroseconds(10);
   digitalWrite(trigPin, LOW);
   durationindigit = pulseIn(echoPin, HIGH);
-  distanceincm = (durationindigit/5) / 29.1;
+  distanceincm =  (durationindigit/5) / 29.1;
  
-  if (distanceincm < 50) {
+  if (distanceincm < 5) {
       digitalWrite(LEDlampGreen, HIGH);
 }
   else {
       digitalWrite(LEDlampGreen, LOW);
   }
   
-  if (distanceincm < 30) {
+  if (distanceincm < 3) {
     digitalWrite(LEDlampYellow, HIGH);
 }
   else {
     digitalWrite(LEDlampYellow,LOW);
   }
-  if (distanceincm < 5) {
+  if (distanceincm < 2) {
     digitalWrite(LEDlampRed, HIGH);
     sound = 1000;
 }
   else {
     digitalWrite(LEDlampRed,LOW);
   }
+  
+  Serial.print(distanceincm);
+    Serial.println(" cm");
+    tone(soundbuzzer, sound);
  
   if (distanceincm > 5 || distanceincm <= 0){
     Serial.println("Outside the permissible range of distances");
